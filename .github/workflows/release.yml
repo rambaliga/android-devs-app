@@ -63,7 +63,8 @@ jobs:
           #mkdir -p signing
           #cp app/build/outputs/bundle/release/app-release.aab signing/app-release.aab
           # Signing the AAB using the Android sign tool
-          jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA-256 -keystore ${{ secrets.KEYSTORE }} app/build/outputs/bundle/release/app-release.aab ${{ secrets.KEY_ALIAS }}
+          cd app/build/outputs/bundle/release/
+          jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA-256 -keystore ${{ secrets.KEYSTORE }} app-release.aab ${{ secrets.KEY_ALIAS }}
 
 
       - name: Upload signed APK
