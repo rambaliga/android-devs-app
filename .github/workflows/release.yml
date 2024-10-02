@@ -62,15 +62,18 @@ jobs:
         run: |
           mkdir -p signing
           cp app/build/outputs/bundle/release/app-release.aab signing/app-release.aab
+          cd signing
+          ls -latr
+          cd ..
           # Signing the AAB using the Android sign tool
-          jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA-256 -keystore ${{ secrets.KEYSTORE }} signing/app-release.aab ${{ secrets.KEY_ALIAS }}
+          #jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA-256 -keystore ${{ secrets.KEYSTORE }} signing/app-release.aab ${{ secrets.KEY_ALIAS }}
 
 
       - name: Upload signed APK
         uses: actions/upload-artifact@v4.4.0
         with:
-          name: signed-apk
-          path: app/build/outputs/apk/release/app-release-signed.apk
+          name: signed-aab
+          path: signing/app-release.aab
 
       - name: Setup Authorization with Google Play Store
         run: echo '${{ secrets.PLAY_AUTH_JSON }}' > service_account.json
