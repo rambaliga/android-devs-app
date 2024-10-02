@@ -56,7 +56,7 @@ jobs:
           signingKeyBase64: ${{ secrets.KEYSTORE }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           alias: ${{ secrets.KEY_ALIAS }}
-          keyPassword: ${{ secrets.ANDROID_DEVS_ALIAS_PASSWORD }
+          keyPassword: ${{ secrets.ANDROID_DEVS_ALIAS_PASSWORD }}
           
       #- name: Sign the AAB
         #run: |
